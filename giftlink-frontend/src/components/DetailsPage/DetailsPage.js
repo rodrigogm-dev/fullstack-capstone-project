@@ -9,11 +9,16 @@ function DetailsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const formatTimestamp = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric' });
+    };
+
 	useEffect(() => {
         const authenticationToken = sessionStorage.getItem('auth-token');
         if (!authenticationToken) {
 			// Task 1: Check for authentication and redirect
-            {{insert code here}}
+            navigate(`/app/product/${productId}`);
         }
 
         // get the gift to be rendered on the details page
@@ -83,14 +88,22 @@ return (
                     <h2 className="details-title">{gift.name}</h2>
                 </div>
                 <div className="card-body">
-                    <div className="image-placeholder-large">
-                        {gift.image ? (
-			// Task 5: Display gift image
-			/*insert code here*/
+                <div className="image-placeholder-large">
+                    {gift.image ? (
+                        <div className="image-placeholder">
+                            <img src={gift.image} alt={gift.name} className="card-img-top" />
+                            <h5 className="card-title mt-2">{gift.name}</h5>
+                            <p><strong>Date Added:</strong> {formatDate(gift.date_added)}</p>
+
+                        </div>
                         ) : (
-                            <div className="no-image-available-large">No Image Available</div>
+                            <div className="no-image-available-large">
+                                <h5 className="card-title">{gift.name}</h5>
+                                No Image Available
+                            </div>
                         )}
                     </div>
+
                     // Task 6: Display gift details
                     	<p><strong>Category:</strong> 
 				{/* insert code here  */}
@@ -98,9 +111,8 @@ return (
                     	<p><strong>Condition:</strong> 
 				{/* insert code here  */}
                     	</p>
-                    	<p><strong>Date Added:</strong> 
-				{/* insert code here  */}
-                        </p>
+                    	<p><strong>Date Added:</strong></p>
+                        <p className="card-text">{formatDate(gift.date_added)}</p>
                     	<p><strong>Age (Years):</strong> 
 				{/* insert code here  */}
                     	</p>
