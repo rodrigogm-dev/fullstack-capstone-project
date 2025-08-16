@@ -45,6 +45,4 @@ async function loadData() {
 
 loadData();
 
-module.exports = {
-    loadData,
-  };
+module.exports = {loadData,};
