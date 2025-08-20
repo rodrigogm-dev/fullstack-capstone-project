@@ -1,15 +1,60 @@
 import React, { useState } from 'react';
-
 import './RegisterPage.css';
+//{{Insert code here}} //Task 1: Import urlConfig from `giftlink-frontend/src/config.js`
+import {urlConfig} from '../../config';
+//{{Insert code here}} //Task 2: Import useAppContext `giftlink-frontend/context/AuthContext.js`
+import { useAppContext } from '../../context/AuthContext';
+//{{Insert code here}} //Task 3: Import useNavigate from `react-router-dom` to handle navigation after successful registration.
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+  
+    //Do these tasks inside the RegisterPage function, after the useStates definition
+    //{{Insert code here}} //Task 4: Include a state for error message.
+    const [showerr, setShowerr] = useState('');
+    //{{Insert code here}} //Task 5: Create a local variable for `navigate`   and `setIsLoggedIn`.
+    const navigate = useNavigate();
+    const { setIsLoggedIn } = useAppContext();
 
     const handleRegister = async () => {
-        console.log("Register invoked")
+        try{
+        const response = await fetch(`${urlConfig.backendUrl}/api/auth/register`, {
+            method: 'POST', //Task 6: Set method
+            headers: {
+                'content-type': 'application/json',
+            },
+            //{{Insert code here}} //Task 7: Set headers
+            headers: {
+                'content-type': 'application/json',
+            },
+            //{{Insert code here}} //Task 8: Set body to send user details
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            })
+        })
+        const json = await response.json();
+        if (json.authtoken) {
+            sessionStorage.setItem('auth-token', json.authtoken);
+            sessionStorage.setItem('name', firstName);
+            sessionStorage.setItem('email', json.email);
+            //insert code for setting logged in state
+            setIsLoggedIn(true);
+            //insert code for navigating to MainPAge
+            navigate('/app')
+            if (json.error) {
+                setShowerr(json.error);
+            }
+        }
+        }catch (e) {
+            console.log("Error fetching details: " + e.message);
+        }
     }
 
 return (
