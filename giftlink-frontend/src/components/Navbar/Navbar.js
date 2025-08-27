@@ -17,6 +17,12 @@ export default function Navbar() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/app/search">Search</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/app/login">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/app/register">Register</Link>
+                    </li>
                 </ul>
             </div>
         </nav>
