@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom'; //import useNavigate
 import MainPage from './components/MainPage/MainPage';
 import LoginPage from './components/LoginPage/LoginPage';
+import DetailsPage from './components/DetailsPage/DetailsPage';
 import Profile from './components/Profile/Profile';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import SearchPage from './components/SearchPage/SearchPage';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/app/login" element={<LoginPage/>} />
           <Route path="/app/register" element={<RegisterPage />} />
           <Route path="/app/search" element={<SearchPage/>} />
+          <Route path="/app/product/:productId" element={<DetailsPage/>} />
         </Routes>
         </>
   );
