@@ -31,7 +31,7 @@ export default function Navbar() {
                 <ul className="navbar-nav ms-auto">
 
                     <li className="nav-item">
-                        <Link className="nav-link" to="/app">Home</Link>
+                    <a className="nav-link" href="/home.html">Home</a> {/* Link to home.html */}
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/app">Gifts</Link>

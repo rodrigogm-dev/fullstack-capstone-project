@@ -43,7 +43,7 @@ function RegisterPage() {
             sessionStorage.setItem('email', json.email);
             //insert code for setting logged in state
             setIsLoggedIn(true);
-            setUserName(json.firstName);
+            setUserName(firstName);
             //insert code for navigating to MainPAge
             navigate('/app')
             if (json.error) {
