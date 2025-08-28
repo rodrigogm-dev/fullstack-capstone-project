@@ -18,7 +18,7 @@ function RegisterPage() {
     const [showerr, setShowerr] = useState('');
     //{{Insert code here}} //Task 5: Create a local variable for `navigate`   and `setIsLoggedIn`.
     const navigate = useNavigate();
-    const { setIsLoggedIn } = useAppContext();
+    const { setIsLoggedIn, setUserName } = useAppContext();
 
     const handleRegister = async () => {
         try{
@@ -43,6 +43,7 @@ function RegisterPage() {
             sessionStorage.setItem('email', json.email);
             //insert code for setting logged in state
             setIsLoggedIn(true);
+            setUserName(json.firstName);
             //insert code for navigating to MainPAge
             navigate('/app')
             if (json.error) {
